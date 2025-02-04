@@ -25,6 +25,8 @@ import me.apeiros.alchimiavitae.setup.items.crafters.CosmicCauldron;
 import me.apeiros.alchimiavitae.setup.items.crafters.DivineAltar;
 import me.apeiros.alchimiavitae.setup.items.electric.EXPCrystallizer;
 import me.apeiros.alchimiavitae.setup.items.electric.PlantInfusionChamber;
+import me.apeiros.alchimiavitae.setup.items.general.DarkMagicPlant;
+import me.apeiros.alchimiavitae.setup.items.general.LightMagicPlant;
 import me.apeiros.alchimiavitae.setup.items.general.MoltenMysteryMetal;
 import me.apeiros.alchimiavitae.setup.items.general.SoulCollector;
 import me.apeiros.alchimiavitae.setup.items.potions.BenevolentBrew;
@@ -77,17 +79,9 @@ public class Setup {
         new PlantInfusionChamber(AlchimiaUtils.ItemGroups.GENERAL).register(instance);
 
         // Plants
-        new SlimefunItem(AlchimiaUtils.ItemGroups.GENERAL, AlchimiaItems.LIGHT_MAGIC_PLANT, AlchimiaUtils.RecipeTypes.PLANT_INFUSION_CHAMBER, new ItemStack[] {
-                new ItemStack(Material.OAK_SAPLING), SlimefunItems.MAGIC_LUMP_3, null,
-                null, null, null,
-                null, null, null
-        }).register(instance);
+        new LightMagicPlant(AlchimiaUtils.ItemGroups.GENERAL).register(instance);
 
-        new SlimefunItem(AlchimiaUtils.ItemGroups.GENERAL, AlchimiaItems.DARK_MAGIC_PLANT, AlchimiaUtils.RecipeTypes.PLANT_INFUSION_CHAMBER, new ItemStack[] {
-                new ItemStack(Material.OAK_SAPLING), AlchimiaItems.CONDENSED_SOUL, null,
-                null, null, null,
-                null, null, null
-        }).register(instance);
+        new DarkMagicPlant(AlchimiaUtils.ItemGroups.GENERAL).register(instance);
 
         // Essence
         new SlimefunItem(AlchimiaUtils.ItemGroups.GENERAL, AlchimiaItems.LIGHT_ESSENCE, RecipeType.GRIND_STONE, new ItemStack[] {
