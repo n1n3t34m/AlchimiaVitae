@@ -102,11 +102,11 @@ public class DivineAltar extends AbstractCrafter<SlimefunItemStack> {
         // {{{ Steel Ingot
         if (steelTransmutation) {
             this.newRecipe(ig, rt,
-                    new SlimefunItemStack(SlimefunItems.STEEL_INGOT, 8),
+                new SlimefunItemStack(SlimefunItems.STEEL_INGOT, 8),
 
-                    null, new ItemStack(Material.IRON_BLOCK), null,
-                    AlchimiaItems.DARKSTEEL, AlchimiaItems.MYSTERY_METAL, AlchimiaItems.ILLUMIUM,
-                    null, SlimefunItems.CARBON, null
+                null, new ItemStack(Material.IRON_BLOCK), null,
+                AlchimiaItems.DARKSTEEL, AlchimiaItems.MYSTERY_METAL, AlchimiaItems.ILLUMIUM,
+                null, SlimefunItems.CARBON, null
             );
         }
         // }}}
