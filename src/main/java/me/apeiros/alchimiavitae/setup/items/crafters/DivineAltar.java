@@ -87,18 +87,6 @@ public class DivineAltar extends AbstractCrafter<SlimefunItemStack> {
         }
         // }}}
 
-        // {{{ Steel Ingot
-        if (steelTransmutation) {
-            this.newRecipe(ig, rt,
-                new SlimefunItemStack(SlimefunItems.STEEL_INGOT, 8),
-
-                null, new ItemStack(Material.IRON_BLOCK), null,
-                AlchimiaItems.DARKSTEEL, AlchimiaItems.MYSTERY_METAL, AlchimiaItems.ILLUMIUM,
-                null, SlimefunItems.CARBON, null
-            );
-        }
-        // }}}
-
         // {{{ Damascus Steel Ingot
         if (damascusTransmutation) {
             this.newRecipe(ig, rt,
@@ -107,6 +95,18 @@ public class DivineAltar extends AbstractCrafter<SlimefunItemStack> {
                 null, new ItemStack(Material.IRON_BLOCK), null,
                 AlchimiaItems.DARKSTEEL, AlchimiaItems.MYSTERY_METAL, AlchimiaItems.ILLUMIUM,
                 null, SlimefunItems.COMPRESSED_CARBON, null
+            );
+        }
+        // }}}
+
+        // {{{ Steel Ingot
+        if (steelTransmutation) {
+            this.newRecipe(ig, rt,
+                    new SlimefunItemStack(SlimefunItems.STEEL_INGOT, 8),
+
+                    null, new ItemStack(Material.IRON_BLOCK), null,
+                    AlchimiaItems.DARKSTEEL, AlchimiaItems.MYSTERY_METAL, AlchimiaItems.ILLUMIUM,
+                    null, SlimefunItems.CARBON, null
             );
         }
         // }}}
