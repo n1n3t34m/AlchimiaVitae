@@ -75,16 +75,19 @@ public class RangedWeaponListener implements Listener {
             Vector newVelocity = e.getProjectile().getVelocity().multiply(5).normalize();
 
             // Determine fireball type and explosion yield based on force of the original projectile
+            // NOTE: API docs are misleading for some reason…
+            //  Force values are 0.0-3.0 for bows & 3.15 for crossbows
+            //  https://minecraft.wiki/w/Arrow#Behavior
             float force = e.getForce();
-            if (force >= 0.95) {
+            if (force >= 2.85) {
                 fb = p.launchProjectile(LargeFireball.class, newVelocity);
-                fb.setYield(force * 3);
-            } else if (force >= 0.3) {
+                fb.setYield(force);
+            } else if (force >= 0.9) {
                 fb = p.launchProjectile(Fireball.class, newVelocity);
-                fb.setYield(force * 3);
+                fb.setYield(force);
             } else {
                 fb = p.launchProjectile(SmallFireball.class, newVelocity);
-                fb.setYield(force * 2);
+                fb.setYield(force * 0.67F);
             }
 
             // Prevent fire from spawning
