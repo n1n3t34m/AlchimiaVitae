@@ -189,7 +189,10 @@ abstract class AbstractCrafter<T> extends CraftingBlock {
 
         int index = 0;
         for (int i : IN_SLOTS) {
-            input[index] = menu.getItemInSlot(i);
+            if (menu.getItemInSlot(i) != null) {
+                input[index] = menu.getItemInSlot(i).clone();
+                input[index].setAmount(1);  // In case of multiple items input
+            }
             index++;
         }
 
