@@ -50,11 +50,11 @@ public class DivineAltar extends AbstractCrafter<SlimefunItemStack> {
         Configuration cfg = instance.getConfig();
 
         // Get config values
-        boolean reinforcedTransmutation       = cfg.getBoolean("options.transmutations.reinforced-transmutation");
-        boolean hardenedTransmutation         = cfg.getBoolean("options.transmutations.hardened-transmutation");
-        boolean steelTransmutation            = cfg.getBoolean("options.transmutations.steel-transmutation");
-        boolean damascusTransmutation         = cfg.getBoolean("options.transmutations.damascus-transmutation");
-        boolean compressedCarbonTransmutation = cfg.getBoolean("options.transmutations.compressed-carbon-transmutation");
+        int reinforcedTransmutation       = cfg.getInt("options.transmutations.reinforced-transmutation");
+        int hardenedTransmutation         = cfg.getInt("options.transmutations.hardened-transmutation");
+        int steelTransmutation            = cfg.getInt("options.transmutations.steel-transmutation");
+        int damascusTransmutation         = cfg.getInt("options.transmutations.damascus-transmutation");
+        int compressedCarbonTransmutation = cfg.getInt("options.transmutations.compressed-carbon-transmutation");
 
         // Get ItemGroup and RecipeType
         ItemGroup ig = AlchimiaUtils.ItemGroups.ALTAR_RECIPES;
@@ -62,10 +62,10 @@ public class DivineAltar extends AbstractCrafter<SlimefunItemStack> {
         // }}}
 
         // {{{ Reinforced Alloy Ingot
-        if (reinforcedTransmutation) {
+        if (reinforcedTransmutation > 0) {
             this.newRecipe(ig, rt,
                 // Out
-                new SlimefunItemStack(SlimefunItems.REINFORCED_ALLOY_INGOT, 2),
+                new SlimefunItemStack(SlimefunItems.REINFORCED_ALLOY_INGOT, reinforcedTransmutation),
 
                 // In
                 null, SlimefunItems.DAMASCUS_STEEL_INGOT, null,
@@ -76,9 +76,9 @@ public class DivineAltar extends AbstractCrafter<SlimefunItemStack> {
         // }}}
 
         // {{{ Hardened Metal
-        if (hardenedTransmutation) {
+        if (hardenedTransmutation > 0) {
             this.newRecipe(ig, rt,
-                new SlimefunItemStack(SlimefunItems.HARDENED_METAL_INGOT, 2),
+                new SlimefunItemStack(SlimefunItems.HARDENED_METAL_INGOT, hardenedTransmutation),
 
                 null, SlimefunItems.STEEL_INGOT, null,
                 AlchimiaItems.DARKSTEEL, AlchimiaItems.MYSTERY_METAL, AlchimiaItems.ILLUMIUM,
@@ -88,9 +88,9 @@ public class DivineAltar extends AbstractCrafter<SlimefunItemStack> {
         // }}}
 
         // {{{ Damascus Steel Ingot
-        if (damascusTransmutation) {
+        if (damascusTransmutation > 0) {
             this.newRecipe(ig, rt,
-                new SlimefunItemStack(SlimefunItems.DAMASCUS_STEEL_INGOT, 8),
+                new SlimefunItemStack(SlimefunItems.DAMASCUS_STEEL_INGOT, damascusTransmutation),
 
                 null, new ItemStack(Material.IRON_BLOCK), null,
                 AlchimiaItems.DARKSTEEL, AlchimiaItems.MYSTERY_METAL, AlchimiaItems.ILLUMIUM,
@@ -100,9 +100,9 @@ public class DivineAltar extends AbstractCrafter<SlimefunItemStack> {
         // }}}
 
         // {{{ Steel Ingot
-        if (steelTransmutation) {
+        if (steelTransmutation > 0) {
             this.newRecipe(ig, rt,
-                new SlimefunItemStack(SlimefunItems.STEEL_INGOT, 8),
+                new SlimefunItemStack(SlimefunItems.STEEL_INGOT, steelTransmutation),
 
                 null, new ItemStack(Material.IRON_BLOCK), null,
                 AlchimiaItems.DARKSTEEL, AlchimiaItems.MYSTERY_METAL, AlchimiaItems.ILLUMIUM,
@@ -112,9 +112,9 @@ public class DivineAltar extends AbstractCrafter<SlimefunItemStack> {
         // }}}
 
         // {{{ Compressed Carbon
-        if (compressedCarbonTransmutation) {
+        if (compressedCarbonTransmutation > 0) {
             this.newRecipe(ig, rt,
-                SlimefunItems.COMPRESSED_CARBON,
+                new SlimefunItemStack(SlimefunItems.COMPRESSED_CARBON, compressedCarbonTransmutation),
 
                 new ItemStack(Material.COAL), new ItemStack(Material.COOKED_BEEF), new ItemStack(Material.COAL),
                 new ItemStack(Material.OAK_LEAVES), new ItemStack(Material.COAL_BLOCK), new ItemStack(Material.KELP),
