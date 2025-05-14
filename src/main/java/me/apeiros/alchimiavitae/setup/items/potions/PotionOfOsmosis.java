@@ -53,8 +53,17 @@ public class PotionOfOsmosis extends AbstractListenerPotion {
             return;
         }
 
-        // Consume Potion of Osmosis
-        p.getInventory().removeItem(potion);
+        // Check effects duration for balance reasons
+        if (effects.stream().anyMatch(x -> x.getDuration() > 17280000)) {
+            p.sendMessage(AlchimiaUtils.format("<red>Effects are too potent to absorb!"));
+            return;
+        }
+
+        // Meke sure to consume Potion of Osmosis
+        if (!p.getInventory().removeItemAnySlot(potion).isEmpty()) {
+            p.sendMessage(AlchimiaUtils.format("<red>Something went wrong!"));
+            return;
+        }
 
         // Remove the player's potion effects
         for (PotionEffect effect : effects) {
