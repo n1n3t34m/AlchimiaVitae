@@ -79,10 +79,10 @@ public class AltarOfInfusion extends AbstractCrafter<Infusion> {
         boolean knockbackEnabled        = cfg.getBoolean("options.infusions.infusion-knockback");
 
         // Create placeholder items
-        CustomItemStack validMelee      = new CustomItemStack(Material.DIAMOND_SWORD, "&a&oA gold, iron, diamond,", "&a&oor netherite axe or sword");
-        CustomItemStack validRanged     = new CustomItemStack(Material.BOW, "&a&oA bow or crossbow");
-        CustomItemStack validHoe        = new CustomItemStack(Material.DIAMOND_HOE, "&a&oA gold, iron, diamond,", "&a&oor netherite hoe");
-        CustomItemStack validChestplate = new CustomItemStack(Material.DIAMOND_CHESTPLATE, "&a&oA gold, iron, diamond, or", "&a&onetherite chestplate");
+        CustomItemStack validMelee      = new CustomItemStack(Material.DIAMOND_SWORD, "&a&oA stone, iron, gold, diamond,", "&a&oor netherite axe or sword");
+        CustomItemStack validRanged     = new CustomItemStack(Material.BOW, "&a&oA bow or a crossbow");
+        CustomItemStack validHoe        = new CustomItemStack(Material.DIAMOND_HOE, "&a&oA stone, iron, gold, diamond,", "&a&oor netherite hoe");
+        CustomItemStack validChestplate = new CustomItemStack(Material.DIAMOND_CHESTPLATE, "&a&oA chainmail, iron, gold, diamond,", "&a&oor netherite chestplate");
         CustomItemStack validFishingRod = new CustomItemStack(Material.FISHING_ROD, "&a&oA fishing rod");
 
         // Get ItemGroup and RecipeType
@@ -521,12 +521,14 @@ public class AltarOfInfusion extends AbstractCrafter<Infusion> {
 
             return switch (mat) {
                 // Melee weapons
-                case GOLDEN_AXE,
+                case STONE_AXE,
                      IRON_AXE,
+                     GOLDEN_AXE,
                      DIAMOND_AXE,
                      NETHERITE_AXE,
-                     GOLDEN_SWORD,
+                     STONE_SWORD,
                      IRON_SWORD,
+                     GOLDEN_SWORD,
                      DIAMOND_SWORD,
                      NETHERITE_SWORD -> AlchimiaUtils.equalsAny(this, ANY, DESTRUCTIVE_CRITS, PHANTOM_CRITS);
 
@@ -534,8 +536,9 @@ public class AltarOfInfusion extends AbstractCrafter<Infusion> {
                 case BOW, CROSSBOW -> AlchimiaUtils.equalsAny(this, ANY, FORCEFUL, HEALING, TRUE_AIM, VOLATILITY);
 
                 // Chestplates
-                case GOLDEN_CHESTPLATE,
+                case CHAINMAIL_CHESTPLATE,
                      IRON_CHESTPLATE,
+                     GOLDEN_CHESTPLATE,
                      DIAMOND_CHESTPLATE,
                      NETHERITE_CHESTPLATE -> AlchimiaUtils.equalsAny(this, ANY, TOTEM_BATTERY);
 
@@ -543,8 +546,9 @@ public class AltarOfInfusion extends AbstractCrafter<Infusion> {
                 case FISHING_ROD -> AlchimiaUtils.equalsAny(this, ANY, KNOCKBACK);
 
                 // Hoes
-                case GOLDEN_HOE,
+                case STONE_HOE,
                      IRON_HOE,
+                     GOLDEN_HOE,
                      DIAMOND_HOE,
                      NETHERITE_HOE -> AlchimiaUtils.equalsAny(this, ANY, AUTO_REPLANT);
 
@@ -555,12 +559,13 @@ public class AltarOfInfusion extends AbstractCrafter<Infusion> {
 
         // {{{ Check and apply infusions
         public boolean has(@Nonnull PersistentDataContainer pdc) {
-            if (this == TOTEM_BATTERY) {
-                if (pdc.has(this.key(), PersistentDataType.INTEGER)) return true;
+            if (this == ANY) {
+                for (Infusion infusion : Infusion.values()) {
+                    if (pdc.has(infusion.key())) return true;
+                }
             } else {
-                if (pdc.has(this.key(), PersistentDataType.BYTE)) return true;
+                return pdc.has(this.key());
             }
-
             return false;
         }
 
@@ -568,7 +573,7 @@ public class AltarOfInfusion extends AbstractCrafter<Infusion> {
             if (this == TOTEM_BATTERY) {
                 pdc.set(this.key(), PersistentDataType.INTEGER, 0);
             } else {
-                pdc.set(this.key(), PersistentDataType.BYTE, (byte) 1);
+                pdc.set(this.key(), PersistentDataType.BOOLEAN, Boolean.TRUE);
             }
         }
         // }}}
